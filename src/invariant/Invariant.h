@@ -9,6 +9,7 @@
 namespace stellar
 {
 
+class Bucket;
 class LedgerDelta;
 
 // NOTE: The checkOn* functions should have a default implementation so that
@@ -25,6 +26,14 @@ class Invariant
 
     virtual std::string
     checkOnLedgerClose(LedgerDelta const& delta)
+    {
+        return std::string{};
+    }
+
+    virtual std::string
+    checkOnBucketApply(std::shared_ptr<Bucket const> bucket,
+                       uint32_t oldestLedger,
+                       uint32_t newestLedger)
     {
         return std::string{};
     }
